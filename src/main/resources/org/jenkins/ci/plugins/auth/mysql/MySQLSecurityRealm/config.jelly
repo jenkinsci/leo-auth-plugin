@@ -1,0 +1,72 @@
+<!--
+ The person or persons who have associated work with this document (the
+ "Dedicator" or "Certifier") hereby either (a) certifies that, to the best of
+ his knowledge, the work of authorship identified is in the public domain of
+ the country from which the work is published, or (b) hereby dedicates
+ whatever copyright the dedicators holds in the work of authorship identified
+ below (the "Work") to the public domain. A certifier, moreover, dedicates any
+ copyright interest he may have in the associated work, and for these
+ purposes, is described as a "dedicator" below.
+
+ A certifier has taken reasonable steps to verify the copyright status of this
+ work. Certifier recognizes that his good faith efforts may not shield him
+ from liability if in fact the work certified is not in the public domain.
+ 
+ Dedicator makes this dedication for the benefit of the public at large and to
+ the detriment of the Dedicator's heirs and successors. Dedicator intends this
+ dedication to be an overt act of relinquishment in perpetuity of all present
+ and future rights under copyright law, whether vested or contingent, in the
+ Work. Dedicator understands that such relinquishment of all rights includes
+ the relinquishment of all rights to enforce (by lawsuit or otherwise) those
+ copyrights in the Work.
+ 
+ Dedicator recognizes that, once placed in the public domain, the Work may be
+ freely reproduced, distributed, transmitted, used, modified, built upon, or
+ otherwise exploited by anyone for any purpose, commercial or non-commercial,
+ and in any way, including by methods that have not yet been invented or
+ conceived.
+
+ name="authenticator.encryption"
+
+-->
+<j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:d="jelly:define"
+    xmlns:l="/lib/layout" xmlns:t="/lib/hudson" xmlns:f="/lib/form">
+    <f:entry title="${%SQL}" field="sql">
+        <f:textbox value="${instance.myDataTable}"/>
+    </f:entry>
+    <f:advanced>
+        <f:entry title="${%EncryptionMethod}" field="encryption">
+            <br />
+            <f:radio value="MD5" id="auth.md5" name="encryption"
+                     checked="${instance.encryption == 'MD5'}"/>
+            <label for="auth.md5">${%MD5}</label>
+            <br />
+            <f:radio value="SHA-1" id="auth.sha1" name="encryption"
+                     checked="${instance.encryption == 'SHA-1'}"/>
+            <label for="auth.md5">${%SHA1}</label>
+            <br />
+            <f:radio value="SHA-256" id="auth.sha256" name="encryption"
+                     checked="${instance.encryption == 'SHA-256'}"/>
+            <label for="auth.md5">${%SHA256}</label>
+            <br />
+            <f:radio value="SHA-384" id="auth.sha384" name="encryption"
+                     checked="${instance.encryption == 'SHA-384'}"/>
+            <label for="auth.md5">${%SHA384}</label>
+            <br />
+            <f:radio value="SHA-512" id="auth.sha512" name="encryption"
+                     checked="${instance.encryption == 'SHA-512'}"/>
+            <label for="auth.md5">${%SHA512}</label>
+            <br />
+            <f:radio value="Crypt" id="auth.crypt" name="encryption"
+                     checked="${instance.encryption == 'Crypt'}"/>
+            <label for="auth.crypt">${%Crypt}</label>
+            <br />
+        </f:entry>
+        <f:entry title="${%HashTimes}" field="hashTimes">
+            <f:textbox value="${instance.hashTimes}" default="1"/>
+       </f:entry>
+       <f:entry title="${%Salt}" field="salt">
+           <f:textbox value="${instance.mySalt}"/>
+       </f:entry>
+    </f:advanced>
+</j:jelly>
