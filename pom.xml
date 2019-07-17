@@ -6,15 +6,16 @@
   <parent>
     <groupId>org.jenkins-ci.plugins</groupId>
     <artifactId>plugin</artifactId>
-    <version>3.25</version>
+    <version>3.47</version>
     <relativePath />
   </parent>
-  <artifactId>leo-auth</artifactId>
+  <groupId>io.jenkins.plugins</groupId>
+  <artifactId>leo-auth-plugin</artifactId>
   <version>1.1-SNAPSHOT</version>
 
   <packaging>hpi</packaging>
 
-  <name>leo-auth</name>
+  <name>leo-auth-plugin</name>
   <!-- FIXME change it to the project's website -->
   <url>http://www.example.com</url>
 
@@ -23,7 +24,7 @@
     <maven.compiler.source>1.7</maven.compiler.source>
     <maven.compiler.target>1.7</maven.compiler.target>
 
-    <jenkins.version>2.121</jenkins.version>
+    <!--<jenkins.version>2.121</jenkins.version>-->
     <java.level>8</java.level>
     <java-jwt.version>3.2.0</java-jwt.version>
   </properties>
