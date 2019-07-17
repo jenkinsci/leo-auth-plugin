@@ -18,8 +18,8 @@ public class MysqlDatabase extends AbstractRemoteDatabase {
     }
 
     @Override
-    protected Class<com.mysql.jdbc.Driver> getDriverClass() {
-        return com.mysql.jdbc.Driver.class;
+    protected Class<com.mysql.cj.jdbc.Driver> getDriverClass() {
+        return com.mysql.cj.jdbc.Driver.class;
     }
 
     @Override

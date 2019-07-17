@@ -134,14 +134,12 @@ public class MySQLSecurityRealm extends AbstractPasswordBasedSecurityRealm {
 //            Class.forName("com.mysql.jdbc.Driver").newInstance();
 //            conn = DriverManager.getConnection(connectionString,
 //                    myUsername, myPassword);
-            if(database == null || database.getDataSource() == null || database.getDataSource().getConnection() == null){
+            if(database == null /*|| database.getDataSource() == null || database.getDataSource().getConnection() == null*/){
                 LOGGER.warning("Database: check database configuration");
                 throw new BadCredentialsException("Please check your database info");
             }
 
             conn = database.getDataSource().getConnection();
-
-
 
             LOGGER.fine("MySQLSecurity: Connection established.");
 
@@ -165,7 +163,8 @@ public class MySQLSecurityRealm extends AbstractPasswordBasedSecurityRealm {
             }
         } catch (SQLException e) {
             LOGGER.warning("MySQLSecurity Realm Error: " + e.getLocalizedMessage());
-        } finally {
+        }
+        finally {
             if (conn != null) {
                 try {
                     conn.close();
