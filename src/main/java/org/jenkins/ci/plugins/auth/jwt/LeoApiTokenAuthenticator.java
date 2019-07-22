@@ -22,6 +22,9 @@ import java.util.logging.Logger;
 
 import static java.util.logging.Level.WARNING;
 
+/**
+ * @author tiger
+ */
 @Extension
 public class LeoApiTokenAuthenticator extends BasicHeaderAuthenticator {
 
@@ -40,7 +43,7 @@ public class LeoApiTokenAuthenticator extends BasicHeaderAuthenticator {
             return null;
         }
 
-        if (verify(password, username, GlobalConfiguration.all().get(LeoTokenAuthGlobalConfiguration.class).getSecret())) {
+        if (verify(password, username, GlobalConfiguration.all().get(LeoTokenAuthGlobalConfiguration.class).getSecret().getPlainText())) {
 //            LOGGER.log(WARNING,"success");
             Authentication auth;
             try {
@@ -72,11 +75,12 @@ public class LeoApiTokenAuthenticator extends BasicHeaderAuthenticator {
      * @param secret 用户的密码
      * @return 是否正确
      */
-    public boolean verify(String token, String userId, String secret) {
+    public boolean verify(String token, String userName, String secret) {
         try {
             Algorithm algorithm = Algorithm.HMAC256(secret);
             JWTVerifier verifier = JWT.require(algorithm)
-                    .withClaim("userId", userId)
+//                    .withClaim("userId", userId)
+                    .withClaim("userName",userName)
                     .build();
             verifier.verify(token);
             return true;

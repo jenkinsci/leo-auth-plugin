@@ -1,6 +1,5 @@
 package org.jenkins.ci.plugins.auth.mysql;
 
-import org.jenkins.ci.plugins.auth.mysql.crypt.EncryptionException;
 import hudson.Extension;
 import hudson.Util;
 import hudson.model.Descriptor;
@@ -13,6 +12,8 @@ import org.acegisecurity.BadCredentialsException;
 import org.acegisecurity.GrantedAuthority;
 import org.acegisecurity.userdetails.UserDetails;
 import org.acegisecurity.userdetails.UsernameNotFoundException;
+import org.jenkins.ci.plugins.auth.mysql.crypt.Cipher;
+import org.jenkins.ci.plugins.auth.mysql.crypt.EncryptionException;
 import org.jenkinsci.plugins.database.Database;
 import org.jenkinsci.plugins.database.GlobalDatabaseConfiguration;
 import org.kohsuke.stapler.DataBoundConstructor;
@@ -25,8 +26,6 @@ import java.sql.SQLException;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.logging.Logger;
-
-import org.jenkins.ci.plugins.auth.mysql.crypt.Cipher;
 
 /**
  * @author tiger
@@ -68,7 +67,7 @@ public class MySQLSecurityRealm extends AbstractPasswordBasedSecurityRealm {
             throws AuthenticationException {
         UserDetails userDetails = loadUserByUsername(username);
 
-        LOGGER.info("salt="+salt+"##hash="+hashTimes+"##encryption="+encryption+"##sql="+sql);
+//        LOGGER.info("salt="+salt+"##hash="+hashTimes+"##encryption="+encryption+"##sql="+sql);
 
         String storedPassword = userDetails.getPassword();
         Cipher cipher;
@@ -88,8 +87,8 @@ public class MySQLSecurityRealm extends AbstractPasswordBasedSecurityRealm {
         } catch (EncryptionException e) {
             LOGGER.warning("cipher encode failure!!!" + e.getLocalizedMessage());
         }
-        LOGGER.info("Encrypted Password: " + encryptedPassword);
-        LOGGER.info("Stored Password: " + storedPassword);
+//        LOGGER.info("Encrypted Password: " + encryptedPassword);
+//        LOGGER.info("Stored Password: " + storedPassword);
         if (!storedPassword.equals(encryptedPassword)) {
             LOGGER.warning("MySQLSecurity: Invalid Username or Password");
             throw new BadCredentialsException("Invalid Username or Password");
@@ -134,7 +133,7 @@ public class MySQLSecurityRealm extends AbstractPasswordBasedSecurityRealm {
 //            Class.forName("com.mysql.jdbc.Driver").newInstance();
 //            conn = DriverManager.getConnection(connectionString,
 //                    myUsername, myPassword);
-            if(database == null /*|| database.getDataSource() == null || database.getDataSource().getConnection() == null*/){
+            if (database == null /*|| database.getDataSource() == null || database.getDataSource().getConnection() == null*/) {
                 LOGGER.warning("Database: check database configuration");
                 throw new BadCredentialsException("Please check your database info");
             }
@@ -163,8 +162,7 @@ public class MySQLSecurityRealm extends AbstractPasswordBasedSecurityRealm {
             }
         } catch (SQLException e) {
             LOGGER.warning("MySQLSecurity Realm Error: " + e.getLocalizedMessage());
-        }
-        finally {
+        } finally {
             if (conn != null) {
                 try {
                     conn.close();

@@ -1,6 +1,7 @@
 package org.jenkins.ci.plugins.auth.jwt;
 
 import hudson.Extension;
+import hudson.util.Secret;
 import jenkins.model.GlobalConfiguration;
 import net.sf.json.JSONObject;
 import org.kohsuke.stapler.DataBoundSetter;
@@ -15,7 +16,7 @@ public class LeoTokenAuthGlobalConfiguration extends GlobalConfiguration {
 
     private boolean enabled = false;
 
-    private String secret;
+    private Secret secret;
 
     public LeoTokenAuthGlobalConfiguration() {
         this.load();
@@ -48,12 +49,12 @@ public class LeoTokenAuthGlobalConfiguration extends GlobalConfiguration {
         this.enabled = enabled;
     }
 
-    public String getSecret() {
+    public Secret getSecret() {
         return secret;
     }
 
     @DataBoundSetter
-    public void setSecret(String secret) {
+    public void setSecret(Secret secret) {
         this.secret = secret;
     }
 }
