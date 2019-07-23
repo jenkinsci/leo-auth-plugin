@@ -16,8 +16,6 @@
   <packaging>hpi</packaging>
 
   <name>leo-auth</name>
-  <!-- FIXME change it to the project's website -->
-  <url>http://www.example.com</url>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -63,20 +61,20 @@
 
   <developers>
     <developer>
-      <id>tiger</id>
-      <name>tiger</name>
+      <id>zshi456</id>
+      <name>zshi456</name>
       <email>zshi456@126.com</email>
     </developer>
   </developers>
 
-  <!-- Assuming you want to host on @jenkinsci:
-  <url>https://wiki.jenkins.io/display/JENKINS/TODO+Plugin</url>
+  <!-- Assuming you want to host on @jenkinsci:-->
+  <url>https://wiki.jenkins.io/display/JENKINS/Leo+Auth+Plugin</url>
   <scm>
       <connection>scm:git:git://github.com/jenkinsci/${project.artifactId}-plugin.git</connection>
       <developerConnection>scm:git:git@github.com:jenkinsci/${project.artifactId}-plugin.git</developerConnection>
       <url>https://github.com/jenkinsci/${project.artifactId}-plugin</url>
   </scm>
-  -->
+
   <repositories>
     <repository>
       <id>repo.jenkins-ci.org</id>
